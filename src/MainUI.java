@@ -141,6 +141,15 @@ public class MainUI extends JFrame {
                 String string2 = string2Field.isVisible() ? string2Field.getText().trim() : ""; // Get string2 only if it's visible
                 int option = optionComboBox.getSelectedIndex() + 1; // Since JComboBox is 0-based index
 
+                if (!isValidInput(string1)) {
+                    resultLabel.setText("Invalid format entered .");
+                    return;
+                }
+                if (!string2.isEmpty() && !isValidInput(string2)) {
+                    resultLabel.setText("Invalid format entered for second string .");
+                    return;
+                }
+
                 switch (option) {
                     case 1:
                         if (isPalindrome(string1)) {
@@ -169,6 +178,8 @@ public class MainUI extends JFrame {
                 }
             }
         });
+
+
 
         resetButton.addActionListener(new ActionListener() {
             @Override
@@ -229,6 +240,9 @@ public class MainUI extends JFrame {
         return Arrays.equals(array1, array2);
     }
 
+    private boolean isValidInput(String input) {
+        return input.matches("[a-zA-Z]+");
+    }
     public static void main(String[] args) {
         new MainUI();
     }
