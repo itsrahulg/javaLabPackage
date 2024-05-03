@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class MainUI extends JFrame {
     public MainUI() {
-        setTitle("Java Lab Package");
+        setTitle("WordPlay");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 300);
 
@@ -39,55 +39,56 @@ public class MainUI extends JFrame {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                label.setFont(label.getFont().deriveFont(Font.BOLD, 16)); // Set font size to 14 (adjust as needed)
+                label.setFont(label.getFont().deriveFont(Font.BOLD, 16)); // Setting the font size
                 return label;
             }
         });
-        optionComboBox.setPreferredSize(new Dimension(200, 30)); // Set preferred size (width: 200, height: 40)
+        optionComboBox.setPreferredSize(new Dimension(200, 30)); // Setting the size of the combo box
         gbc.gridx = 1;
         gbc.gridy = 0;
         inputPanel.add(optionComboBox, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 1; // Move to the next row
-        gbc.gridwidth = 2; // Span across two columns
-        inputPanel.add(new JPanel(), gbc); // Empty panel for spacing
+        gbc.gridy = 1; // Moving to the next row
+        gbc.gridwidth = 2; // taking space of two columns
+        inputPanel.add(new JPanel(), gbc); // Giving empty panel space
 
         JLabel string1Label = new JLabel("Enter string to check :");
-        string1Label.setFont(string1Label.getFont().deriveFont(Font.BOLD, 16)); // Increase font size
+        string1Label.setFont(string1Label.getFont().deriveFont(Font.BOLD, 16));
         gbc.gridx = 0;
-        gbc.gridy = 2; // Move to the next row
-        gbc.gridwidth = 1; // Reset grid width
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
         inputPanel.add(string1Label, gbc);
 
         JTextField string1Field = new JTextField(30);
-        Dimension fieldDimension = string1Field.getPreferredSize(); // Get the current preferred size
+        Dimension fieldDimension = string1Field.getPreferredSize();
         fieldDimension.height = 30; // Set the desired height
-        string1Field.setPreferredSize(fieldDimension); // Set the new preferred size
+        string1Field.setPreferredSize(fieldDimension);
         gbc.gridx = 1;
-        gbc.gridy = 2; // Move to the next row
+        gbc.gridy = 2;
         inputPanel.add(string1Field, gbc);
 
         JLabel string2Label = new JLabel("Enter Second String :");
-        string2Label.setFont(string2Label.getFont().deriveFont(Font.BOLD, 16)); // Increase font size
+        string2Label.setFont(string2Label.getFont().deriveFont(Font.BOLD, 16));
         gbc.gridx = 0;
-        gbc.gridy = 3; // Move to the next row
-        gbc.gridwidth = 1; // Reset grid width
+        gbc.gridy = 3;
+        gbc.gridwidth = 1;
         inputPanel.add(string2Label, gbc);
-        string2Label.setVisible(false); // Initially hide the label
+        string2Label.setVisible(false); // Initially hide the label of string 2 if anagram option not selected
 
         JTextField string2Field = new JTextField(30);
-        Dimension fieldDimension2 = string2Field.getPreferredSize(); // Get the current preferred size
+        Dimension fieldDimension2 = string2Field.getPreferredSize();
         fieldDimension2.height = 30; // Set the desired height
-        string2Field.setPreferredSize(fieldDimension2); // Set the new preferred size
+        string2Field.setPreferredSize(fieldDimension2);
         gbc.gridx = 1;
-        gbc.gridy = 3; // Move to the next row
-        gbc.gridwidth = 1; // Reset grid width
+        gbc.gridy = 3;
+        gbc.gridwidth = 1;
         inputPanel.add(string2Field, gbc);
         string2Field.setVisible(false);
-        // Initially hide the text field
 
-        // Adding ActionListener for optionComboBox to show/hide string2Field based on selected option
+
+
+        // below code is to show label and text field for second string when we select anagram
         optionComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -102,44 +103,47 @@ public class MainUI extends JFrame {
             }
         });
 
-        // Existing code for string1Label and string1Field remains the same
+
+
 
         JPanel analyzePanel = new JPanel(new BorderLayout());
         panel.add(analyzePanel, BorderLayout.SOUTH);
 
+
         // Create a panel to contain the buttons
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); // Center the buttons horizontally
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); // This is to center the buttons horizontally
         analyzePanel.add(buttonPanel, BorderLayout.NORTH);
 
-        // Create and customize the "GET RESULT" button
+
+        //this is creation and positioning of the get result button
         JButton analyzeButton = new JButton("GET RESULT");
-        analyzeButton.setPreferredSize(new Dimension(150, 40)); // Set width and height
-        analyzeButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); // Add margin (10 pixels) above and below the button
+        analyzeButton.setPreferredSize(new Dimension(150, 40));
+        analyzeButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         buttonPanel.add(analyzeButton);
 
-        // Create and customize the "RESET" button
+
+        // This is where we create and customize the "RESET" button
         JButton resetButton = new JButton("RESET");
-        resetButton.setPreferredSize(new Dimension(150, 40)); // Set width and height
-        resetButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); // Add margin (10 pixels) above and below the button
+        resetButton.setPreferredSize(new Dimension(150, 40));
+        resetButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         buttonPanel.add(resetButton);
+        buttonPanel.add(Box.createVerticalStrut(10));
 
-        // Add padding below the button
-        buttonPanel.add(Box.createVerticalStrut(10)); // Adjust vertical spacing as needed
 
-        // Create and customize the result label
+        // Creating and customizing the result label to display the result
         JLabel resultLabel = new JLabel("");
-        resultLabel.setFont(resultLabel.getFont().deriveFont(Font.BOLD, 16)); // Set font to bold and size to 16
-        resultLabel.setHorizontalAlignment(SwingConstants.CENTER); // Center the text horizontally
+        resultLabel.setFont(resultLabel.getFont().deriveFont(Font.BOLD, 16));
+        resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
         analyzePanel.add(resultLabel, BorderLayout.CENTER);
 
-        // Adding action listeners for analyzeButton and resetButton remain the same
+
 
         analyzeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String string1 = string1Field.getText().trim();
                 String string2 = string2Field.isVisible() ? string2Field.getText().trim() : ""; // Get string2 only if it's visible
-                int option = optionComboBox.getSelectedIndex() + 1; // Since JComboBox is 0-based index
+                int option = optionComboBox.getSelectedIndex() + 1;
 
                 if (!isValidInput(string1)) {
                     resultLabel.setText("Invalid format entered .");
@@ -184,10 +188,8 @@ public class MainUI extends JFrame {
         resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Clear text fields
                 string1Field.setText("");
                 string2Field.setText("");
-                // Set text to empty in the result label
                 resultLabel.setText("");
             }
         });
@@ -207,6 +209,7 @@ public class MainUI extends JFrame {
         }
         return true;
     }
+
 
     // Isogram check logic
     private boolean isIsogram(String str) {
