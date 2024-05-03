@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class MainUI extends JFrame {
     public MainUI() {
-        setTitle("WordPlay");
+        setTitle("WordPlay new for github");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 300);
 
